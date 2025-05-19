@@ -110,10 +110,10 @@ python ICPAssetExpress.py -h
 [https://github.com/yz1639/FscanOutputBeautify](https://github.com/yz1639/FscanOutputBeautify)
 
 <h1 id="jwjv9"><font style="color:rgb(31, 35, 40);">0x06 补充</font></h1>
-**2025.5.19	添加运行结果合并脚本（merge.py）**
+2025.5.19	添加运行结果合并脚本（merge.py）
 
-+ **应用场景：**同一集团下大量相关企业，结果按公司输出至文件较为繁琐，且可能大部分公司发现资产很少
-+ **用途：**合并指定目录下所有quake资产、指纹识别、端口扫描结果，同时标注数据来源表格
++ 应用场景：同一集团下大量相关企业，结果按公司输出至文件较为繁琐，且可能大部分公司发现资产很少
++ 用途：合并指定目录下所有quake资产、指纹识别、端口扫描结果，同时标注数据来源表格
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1747646993640-19ac82c1-afd9-4187-b1ab-f789ccfc9bd9.png)
 
