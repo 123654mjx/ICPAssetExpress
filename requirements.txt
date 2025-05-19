@@ -1,4 +1,4 @@
-pandas
+pandas>=1.5.0
 requests
 rich
-openpyxl
+openpyxl>=3.1.0

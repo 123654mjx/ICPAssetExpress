@@ -3,11 +3,9 @@
 + <font style="color:rgb(31, 35, 40);">郑重声明：文中所涉及的技术、思路和工具仅供以安全为目的的学习交流使用，任何人不得将其用于非法用途以及盈利等目的，否则后果自行承担。</font>
 
 <h1 id="LnNvS"><font style="color:rgb(31, 35, 40);">0x01 简介</font></h1>
-
 <font style="color:rgb(31, 35, 40);">一款互联网有效资产发现工具，方便快速对多个企业进行信息收集（目前基于360 quake api）</font>
 
 <h1 id="xw5kp"><font style="color:rgb(31, 35, 40);">0x02 功能</font></h1>
-
 1. 调用 <font style="color:rgb(31, 35, 40);">360 quake api对目标企业关键词（icp_keywords）进行查询</font>
 2. <font style="color:rgb(31, 35, 40);">调用 fscan1.8.2 以及 observer_ward 对接口查询到的 ip 及 url 进行端口探测及指纹识别</font>
 3. <font style="color:rgb(31, 35, 40);">在对应企业文件夹写入结果</font>
@@ -32,7 +30,6 @@
 ```
 
 <h1 id="sTkQf"><font style="color:rgb(31, 35, 40);">0x03 使用</font></h1>
-
 1. **按照observer_ward项目中所示运行observer_ward或手动更新指纹（不然无法进行指纹识别）**
 
 项目地址： [https://github.com/emo-crab/observer_ward](https://github.com/emo-crab/observer_ward)
@@ -48,7 +45,6 @@ pip install -r requirements.txt
 【注意】
 
 + 关键词会进行模糊匹配，如查询xx集团，则会查询出xx集团a公司、xx集团b公司...
-
 4. **<font style="color:rgb(31, 35, 40);">基本配置中 api_key 、默认端口、基础语句模板等参数可自行设置调整</font>**
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1747117242964-1cfdf7ee-5cc5-4ddd-8323-6bab8cdfcbe2.png)
@@ -71,7 +67,7 @@ icp_keywords:"{target}" and not domain_is_wildcard:true and country:"China" AND 
 python ICPAssetExpress.py -h
 ```
 
-![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1747227996472-b3b7bcec-0140-49c4-a53f-b32d615393fb.png)
+![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1747389738763-d5e52518-7bd8-4471-8fca-e451aaaedf0b.png)
 
 6. **<font style="color:rgb(31, 35, 40);">输出结果（逻辑小缺陷：需等脚本全部运行完毕才能正常获取结果，后续可能会进行调整）</font>**
 
@@ -94,15 +90,13 @@ python ICPAssetExpress.py -h
 （3）运行结束后项目目录会出现日志文件 log.txt，出现报错或查询失败可自行根据日志排查
 
 <h1 id="hKjp6"><font style="color:rgb(31, 35, 40);">0x04 运行截图</font></h1>
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39031852/1747389977368-a9e087b8-e15d-4904-89e3-e30c02a981b7.png" style="zoom:50%;" />
 
-![img](https://cdn.nlark.com/yuque/0/2025/png/39031852/1747389977368-a9e087b8-e15d-4904-89e3-e30c02a981b7.png)
+![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1747390134236-84f51d18-2cce-4219-ab54-32c1e9b911bd.png)
 
-![img](https://cdn.nlark.com/yuque/0/2025/png/39031852/1747390134236-84f51d18-2cce-4219-ab54-32c1e9b911bd.png)
-
-![img](https://cdn.nlark.com/yuque/0/2025/png/39031852/1747390183946-87d84564-2047-4708-ab96-52534f6959a1.png)
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39031852/1747390183946-87d84564-2047-4708-ab96-52534f6959a1.png" style="zoom: 80%;" />
 
 <h1 id="L0UAF"><font style="color:rgb(31, 35, 40);">0x05 致谢</font></h1>
-
 本脚本是为提高工作效率用 AI 完成的缝合工具，感谢各位师傅的开源项目和提议！！
 
 <font style="color:rgb(31, 35, 40);">gh0stkey</font>
@@ -114,4 +108,12 @@ python ICPAssetExpress.py -h
 [https://github.com/shadow1ng/fscan](https://github.com/shadow1ng/fscan)
 
 [https://github.com/yz1639/FscanOutputBeautify](https://github.com/yz1639/FscanOutputBeautify)
+
+<h1 id="jwjv9"><font style="color:rgb(31, 35, 40);">0x06 补充</font></h1>
+**2025.5.19	添加运行结果合并脚本（merge.py）**
+
++ **应用场景：**同一集团下大量相关企业，结果按公司输出至文件较为繁琐，且可能大部分公司发现资产很少
++ **用途：**合并指定目录下所有quake资产、指纹识别、端口扫描结果，同时标注数据来源表格
+
+![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1747646993640-19ac82c1-afd9-4187-b1ab-f789ccfc9bd9.png)
 
