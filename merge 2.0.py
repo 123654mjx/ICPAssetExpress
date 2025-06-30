@@ -15,6 +15,9 @@ def merge_excels(target_folder, output_folder):
     # quake_result 相关的 DataFrame 列表
     quake_result_frames = []
 
+    # fofa_results 相关的 DataFrame 列表
+    fofa_results_frames = []
+
     for root, dirs, files in os.walk(target_folder):
         for file in files:
             if file.endswith(".xlsx"):
@@ -28,7 +31,8 @@ def merge_excels(target_folder, output_folder):
                     excel_file_handler = pd.ExcelFile(file_path, engine="openpyxl")
                     sheet_names_list = excel_file_handler.sheet_names
                 except Exception as e:
-                    if file.startswith("quake_result_"):
+                    # 对于 quake 和 fofa 文件，即使读取 sheets 失败也可能只读取第一个 sheet
+                    if file.startswith("quake_result_") or file.startswith("fofa_results_"):
                         pass
                     else:
                         print(
@@ -45,7 +49,6 @@ def merge_excels(target_folder, output_folder):
                         try:
                             df = pd.read_excel(excel_file_handler, sheet_name=sheet_name, engine="openpyxl")
                             df["来源表名"] = file
-
                             if "有效" in sheet_name:
                                 valid_frames.append(df)
                             elif "无效" in sheet_name:
@@ -65,7 +68,6 @@ def merge_excels(target_folder, output_folder):
                         try:
                             df = pd.read_excel(excel_file_handler, sheet_name=sheet_name, engine="openpyxl")
                             df["来源表名"] = file
-
                             if sheet_name not in fscan_data_by_sheet:
                                 fscan_data_by_sheet[sheet_name] = []
                             fscan_data_by_sheet[sheet_name].append(df)
@@ -79,6 +81,15 @@ def merge_excels(target_folder, output_folder):
                         quake_result_frames.append(df)
                     except Exception as e:
                         print(f"读取 quake 文件失败: {file_path}, 错误信息: {e}")
+
+                # fofa 合并逻辑 (修改：添加来源表名)
+                elif file.startswith("fofa_results_"):
+                    try:
+                        df = pd.read_excel(file_path, engine="openpyxl")
+                        df["来源表名"] = file  # 添加来源表名列
+                        fofa_results_frames.append(df)
+                    except Exception as e:
+                        print(f"读取 fofa 文件失败: {file_path}, 错误信息: {e}")
 
                 if excel_file_handler:
                     excel_file_handler.close()
@@ -126,6 +137,15 @@ def merge_excels(target_folder, output_folder):
         except Exception as e:
             print(f"写入 quake_result_all.xlsx 文件失败: {e}")
 
+    # fofa 合并逻辑 (修改：添加来源表名说明)
+    if fofa_results_frames:
+        output_path_fofa = os.path.join(output_folder, "fofa_results_all.xlsx")
+        try:
+            pd.concat(fofa_results_frames, ignore_index=True).to_excel(output_path_fofa, index=False)
+            print(f"文件 fofa_results_all.xlsx 已成功保存。")
+        except Exception as e:
+            print(f"写入 fofa_results_all.xlsx 文件失败: {e}")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -133,10 +153,11 @@ if __name__ == "__main__":
 
 详细说明:
   - 脚本会遍历目标文件夹及其子文件夹。
-  - 自动识别并处理以下三种类型（基于文件名前缀）的 .xlsx 文件:
+  - 自动识别并处理以下四种类型（基于文件名前缀）的 .xlsx 文件:
     * 'url_fingerprint_*'
     * 'fscan_result_*'
     * 'quake_result_*'
+    * 'fofa_results_*'
 
 输出文件规则:
   1. url_fingerprint_all.xlsx:
@@ -152,6 +173,10 @@ if __name__ == "__main__":
   3. quake_result_all.xlsx:
      - 直接合并所有匹配文件的第一个sheet数据。
      - 不添加 '来源表名' 列。
+
+  4. fofa_results_all.xlsx:
+     - 直接合并所有匹配文件的第一个sheet数据。
+     - 会添加 '来源表名' 列。 # 修改：明确说明会添加来源表名
 """,
         formatter_class=argparse.RawTextHelpFormatter  # 保持原始文本格式
     )
