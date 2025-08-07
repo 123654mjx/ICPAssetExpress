@@ -2,3 +2,4 @@ pandas>=1.5.0
 requests
 rich
 openpyxl>=3.1.0
+xlsxwriter
