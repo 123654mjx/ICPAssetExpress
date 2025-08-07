@@ -2,14 +2,6 @@
 
 <font style="color:rgb(31, 35, 40);">郑重声明：文中所涉及的技术、思路和工具仅供以安全为目的的学习交流使用，任何人不得将其用于非法用途以及盈利等目的，否则后果自行承担。</font>
 
-------
-
-**【交流讨论】欢迎各位大佬关注公众号、加群讨论技术和工具改进思路，后期也会提供一些内测版本**
-
-<img src="https://cdn.nlark.com/yuque/0/2025/png/39031852/1754542236511-7314800d-ebfe-4eb5-81e7-931cbd0c8843.png" style="zoom: 67%;" />
-
-------
-
 # <font style="color:rgb(31, 35, 40);">0x01 简介</font>
 <font style="color:rgb(31, 35, 40);">一款互联网有效资产发现工具，方便快速对大量企业进行信息收集，快速打点</font>
 
@@ -17,15 +9,10 @@
 
 # <font style="color:rgb(31, 35, 40);">0x02 功能</font>
 1. 调用 <font style="color:rgb(31, 35, 40);">360 quake api对目标企业关键词（icp_keywords）进行查询</font>
-2. <font style="color:rgb(31, 35, 40);">调用 gogo </font><font style="color:rgb(31, 35, 40) !important;">v2.13.8</font><font style="color:rgb(31, 35, 40);"> 以及 observer_ward 对接口查询到的 ip 及 url 进行端口探测及指纹识别</font>
+2. <font style="color:rgb(31, 35, 40);">调用 gogo以及 observer_ward 对接口查询到的 ip 及 url 进行端口探测及指纹识别</font>
 3. <font style="color:rgb(31, 35, 40);">调用fofa api 对接口查询到的 ip 进行反查（注意：已内置部分过滤cdn、邮箱等公共服务规则，但覆盖面仍不全面，后续将持续优化）</font>
-4. <font style="color:rgb(31, 35, 40);">调用实时查询icp接口获取工信部备案目标企业所属小程序、app信息</font>
-
-<font style="color:rgb(31, 35, 40);">（接口平台地址：</font>[https://api2.wer.plus/user/register?cps=8nJjEdle](https://api2.wer.plus/user/register?cps=8nJjEdle)<font style="color:rgb(31, 35, 40);">）</font>
-
+4. <font style="color:rgb(31, 35, 40);">调用实时查询icp接口（</font>[https://api2.wer.plus/](https://api2.wer.plus/)<font style="color:rgb(31, 35, 40);">）获取工信部备案目标企业所属小程序、app信息</font>
 5. <font style="color:rgb(31, 35, 40);">在对应企业文件夹写入结果</font>
-
-![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1751248440805-9bead298-48b8-4083-838f-a42eaa85f3ca.png)
 
 ```python
 支持两种运行模式：
@@ -38,15 +25,18 @@
 
 2. 高级模式 (-a, --advanced, 默认):
    - Quake API 查询获取资产
-   - 对提取的IP进行gogo扫描 (端口、服务、简单漏洞探测)
+   - 对提取的IP进行gogo扫描
    - 对从Quake获取的URL进行初次指纹识别
    - 对gogo发现的新URL进行二次指纹识别
    - 结果整理输出 (Excel, .txt文件归档)
 
-其余辅助功能及可配置项见后续具体使用部分及-h
+可配置项见后续具体使用部分
 ```
 
+<img src="https://cdn.nlark.com/yuque/0/2025/png/39031852/1751248440805-9bead298-48b8-4083-838f-a42eaa85f3ca.png" style="zoom:67%;" />
+
 # <font style="color:rgb(31, 35, 40);">0x03 使用</font>
+
 1. **按照observer_ward项目中所示运行observer_ward或手动更新指纹（不然无法进行指纹识别）**
 
 项目地址： [https://github.com/emo-crab/observer_ward](https://github.com/emo-crab/observer_ward)
@@ -63,9 +53,7 @@ pip install -r requirements.txt
 
 【注意】
 
-<font style="color:rgb(31, 35, 40);">目前查询工信部备案数据（小程序、app）功能需于镜芯接口平台购买api接口获取Key</font>
-
-<font style="color:rgb(31, 35, 40);">（接口平台地址：</font>[https://api2.wer.plus/user/register?cps=8nJjEdle](https://api2.wer.plus/user/register?cps=8nJjEdle)<font style="color:rgb(31, 35, 40);">）</font>
+<font style="color:rgb(31, 35, 40);">目前查询工信部备案数据（小程序、app）功能需于 </font>[https://api2.wer.plus/doc/14](https://api2.wer.plus/doc/14) <font style="color:rgb(31, 35, 40);">购买api接口获取Key</font>
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1751212401234-46f1c1ca-2ea9-4d45-8f7c-420274bb32fc.png)
 
@@ -90,7 +78,7 @@ icp_keywords:"{target}" and not domain_is_wildcard:true and country:"China" AND 
 python ICPAssetExpress.py -h
 ```
 
-![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1754442760157-4a6356a5-acd0-44b3-9ed6-2f7b704d8877.png)
+![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1751211885603-16ba289e-ea22-4ba5-96b3-bdaf7771f35f.png)
 
 ```plain
 # 建议开启 --skip-fofa-fingerprint（跳过对fofa反查ip获取url的指纹识别）
@@ -98,23 +86,17 @@ python ICPAssetExpress.py -h
 
 【命令示例】
 # 基础模式（仅扫描quake url），查询备案小程序及app，fofa反查ip（跳过fofa url识别）
-python ICPAssetExpress.py -b -checkother "app,mapp" --skip-fofa-fingerprint -o 输出目录
+python ICPAssetExpress 5.0.py -b -checkother "app,mapp" --skip-fofa-fingerprint -o 输出目录
 
 # 高级模式（扫描quake url，调用gogo扫描ip），查询备案小程序，跳过fofa反查ip
-python ICPAssetExpress.py -a -checkother "mapp" --no-fofa -o 输出目录
-
-# 仅批量导出资产模式（仅根据quake备案导出资产，无需其他参数）
-python ICPAssetExpress.py --onlyquake -o 输出目录
+python ICPAssetExpress 5.0.py -a -checkother "mapp" --no-fofa -o 输出目录
 
 # merge脚本（遍历输出结果合并quake、指纹识别、gogo结果、ip反查结果）
 python merge.py -t 存放结果目录 -o 输出目录
 
-# process_results脚本（中断临时处理脚本，在异常结束情况下处理已有结果至正常状态）
-python process_results.py -t 存放结果目录 -o 输出目录
-
 【注意】
 若未配置相关接口，不使用相关模块即可，具体如下：
-● 未配置fofa key，可使用 --no-fofa 跳过fofa调用阶段
+● 未配置fofa key，可使用 --nofofa 跳过fofa调用阶段
 ● 未配置第三方工信部备案数据查询接口 key，不添加 -checkother 即可跳过该功能
 ```
 
@@ -140,17 +122,19 @@ python process_results.py -t 存放结果目录 -o 输出目录
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1751216925325-a1f92fc4-b086-4730-a219-25823d07fa4c.png)![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1751246597256-f9a6b26e-bf09-45ed-bdbb-6ccac0fdf36c.png)
 
-4. 具体目标单位处理结果（分为各个阶段处理结果）（部分功能已重构优化）
+4. 具体目标单位处理结果（分为各个阶段处理结果）
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1751246401269-ae8af290-a50c-46d8-ba3f-60b0f8a95d14.png)
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1751249024726-4cffd017-6b76-4495-bf98-ce3211b2ede3.png)
 
-5. merge脚本合并多个单位结果（部分效果）（部分功能已重构优化）
+5. merge脚本合并多个单位结果（部分效果）
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1751245873201-f74e4e20-4377-4fb5-8b6a-1effbd3a3e37.png)
 
-![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1751246249588-5f1ae56f-3f71-477c-bf0d-7dbdf5f26af7.png)
+![img](https://cdn.nlark.com/yuque/0/2025/png/39031852/1754543813320-f007abcd-ad21-429f-bf98-9d81bcaa1d58.png)
+
+![img](https://cdn.nlark.com/yuque/0/2025/png/39031852/1754544110286-02ee718d-de6c-457e-a798-50a2b197fc31.png)
 
 # <font style="color:rgb(31, 35, 40);">0x05 致谢</font>
 本脚本是为提高工作效率用 AI 完成的缝合工具，感谢各位师傅的开源项目和提议！！
@@ -159,25 +143,23 @@ python process_results.py -t 存放结果目录 -o 输出目录
 
 <font style="color:rgb(31, 35, 40);">樱花庄的本间白猫</font>
 
-[https://github.com/chainreactors/gogo](https://github.com/chainreactors/gogo)
-
 [https://github.com/emo-crab/observer_ward](https://github.com/emo-crab/observer_ward)
 
 [https://github.com/shadow1ng/fscan](https://github.com/shadow1ng/fscan)
 
-[https://github.com/yz1639/fscanOutputBeautify](https://github.com/yz1639/FscanOutputBeautify)
+[https://github.com/yz1639/FscanOutputBeautify](https://github.com/yz1639/FscanOutputBeautify)
 
-# <font style="color:rgb(31, 35, 40);">0x06 更新记录</font>
-**2025.5.19	**
+# <font style="color:rgb(31, 35, 40);">0x06 补充</font>
+**2025.5.19**
 
 **添加结果合并脚本（merge.py）**
 
-+ **应用场景：**同一集团下大量相关企业，结果按公司输出至文件较为繁琐，且可能大部分公司发现资产很少
-+ **用途：**合并指定目录下所有quake资产、指纹识别、端口扫描结果，同时标注数据来源表格
++ 应用场景：同一集团下大量相关企业，结果按公司输出至文件较为繁琐，且可能大部分公司发现资产很少
++ 用途：合并指定目录下所有quake资产、指纹识别、端口扫描结果，同时标注数据来源表格
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1747646993640-19ac82c1-afd9-4187-b1ab-f789ccfc9bd9.png)
 
-**2025.6.29	**
+**2025.6.29**
 
 1. **添加 fofa（ip反查）及其他备案资产（app、小程序）查询功能**
 2. **添加全部查询结果的缓存机制**
@@ -186,11 +168,6 @@ python process_results.py -t 存放结果目录 -o 输出目录
 
 **2025.8.25**
 
-1. **添加无主动探测仅quake资产导出功能**
-2. **完善结果合并脚本（merge.py）的gogo结果合并功能**
-3. **添加中断临时处理脚本（process_results.py），若工具卡死，手动退出后可处理已有结果**
-4. **重构端口扫描功能，端口扫描从fscan改用gogo（补充端口指纹、协议识别）**
-5. **完善、优化输出文件效果**
-
-****
-
+1. **完善结果合并脚本（merge.py）的gogo结果合并功能**
+2. **添加中断临时处理脚本（process_results.py），若工具卡死，手动退出后可处理已有结果**
+3. **优化端口扫描功能，改用gogo（补充端口指纹、协议识别）**
