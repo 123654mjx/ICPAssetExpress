@@ -76,7 +76,7 @@ pip install -r requirements.txt
 
 （2<font style="color:rgb(31, 35, 40);">）使用 icp_query 项目实现本地icp接口查询，需单独配置</font>
 
-      a.  打开/tools/icp文件夹
+​      a.  打开/tools/icp文件夹
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1760060356485-43f62f76-7b51-4537-b71f-250dd6069056.png)  
       b.  根据ICP_Query项目进行配置，具体可详见该项目地址（代理池/出口有ipv6的网络）
