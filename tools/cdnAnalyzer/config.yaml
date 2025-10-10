@@ -1,0 +1,68 @@
+# 基本参数
+# DNS并发和超时设置
+dns-timeout: 3
+resolvers-num: 3
+city-map-num: 3
+dns-concurrency: 10
+edns-concurrency: 10
+query-edns-cnames: false
+query-edns-use-sys-ns: false
+query-method: dns
+
+# 数据库路径配置
+download-items:
+  - module: ipv4locate
+    filename: qqwry.dat
+    download-urls:
+      - https://github.com/metowolf/qqwry.dat/releases/latest/download/qqwry.dat
+    keep-updated: true
+    enable: true
+
+  - module: ipv6locate
+    filename: zxipv6wry.db
+    download-urls:
+      - https://github.com/winezer0/cdnAnalyzer/blob/main/assets/zxipv6wry.db
+    keep-updated: false
+    enable: true
+
+  #  - module: ipv4locate
+  #    filename: ip2region_v4.xdb
+  #    download-urls:
+  #      - https://github.com/lionsoul2014/ip2region/blob/master/data/ip2region_v4.xdb
+  #    keep-updated: true
+  #    enable: true
+  #
+  #  - module: ipv6locate
+  #    filename: ip2region_v6.xdb
+  #    download-urls:
+  #      - https://github.com/lionsoul2014/ip2region/blob/master/data/ip2region_v6.xdb
+  #    keep-updated: false
+  #    enable: true
+
+  - module: geolite2-asn
+    filename: geolite2-asn.mmdb
+    download-urls:
+      - https://github.com/sapics/ip-location-db/blob/main/geolite2-asn-mmdb/geolite2-asn.mmdb
+    keep-updated: true
+    enable: true
+
+  - module: dns-resolvers
+    filename: resolvers.txt
+    download-urls:
+      - https://github.com/winezer0/cdnAnalyzer/blob/main/assets/resolvers.txt
+    keep-updated: false
+    enable: true
+
+  - module: edns-city-ip
+    filename: city_ip.csv
+    download-urls:
+      - https://github.com/winezer0/cdnAnalyzer/blob/main/assets/city_ip.csv
+    keep-updated: false
+    enable: true
+
+  - module: cdn-sources
+    filename: sources.json
+    download-urls:
+      - https://github.com/winezer0/cdnAnalyzer/blob/main/assets/sources.json
+    keep-updated: true
+    enable: true
