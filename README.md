@@ -70,21 +70,22 @@ pip install -r requirements.txt
 
 <font style="color:rgb(31, 35, 40);">查询工信部备案数据（小程序、app）功能支持两种途径，对应两个版本，输出效果一致</font>
 
-<font style="color:rgb(31, 35, 40);">（1）需于镜芯接口平台获取Key，免费使用api接口</font>
+**<font style="color:rgb(31, 35, 40);">（1）需于镜芯接口平台获取Key，免费使用api接口</font>**
 
 <font style="color:rgb(31, 35, 40);">接口平台地址：</font>[https://api2.wer.plus/user/register?cps=8nJjEdle](https://api2.wer.plus/user/register?cps=8nJjEdle)![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1760059988111-2da6c36e-867a-4682-b0b8-3aa8869955b5.png)
 
-（2<font style="color:rgb(31, 35, 40);">）使用 icp_query 项目实现本地icp接口查询，需单独配置</font>
+**（2<font style="color:rgb(31, 35, 40);">）使用 icp_query 项目实现本地icp接口查询，需单独配置</font>**
 
-​      a.  打开/tools/icp文件夹
+​		a.  打开/tools/icp文件夹
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1760060356485-43f62f76-7b51-4537-b71f-250dd6069056.png)  
-      b.  根据ICP_Query项目进行配置，具体可详见该项目地址（代理池/出口有ipv6的网络）
+		b.  根据ICP_Query项目进行配置，具体可详见该项目地址（代理池/出口有ipv6的网络）
 
-  （修改对应网卡名即可，若无法正常使用建议使用第三方调用版本）
+  	（修改对应网卡名即可，若无法正常使用建议使用第三方调用版本）
 
-![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1760060446388-35f5e880-ae4b-4769-ac05-7acec3475a2b.png)  
-      c.  双击icp.bat启动本地icp查询服务，正常使用脚本
+![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1760060446388-35f5e880-ae4b-4769-ac05-7acec3475a2b.png) 
+
+​		c.  双击icp.bat启动本地icp查询服务，正常使用脚本
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/39031852/1760060711605-d1514699-4066-4564-baa2-35d067edb5fa.png)
 
