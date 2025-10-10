@@ -11,7 +11,7 @@
 
 **【交流讨论】欢迎各位大佬关注公众号、私聊讨论技术和工具改进思路，后期也会提供一些内测版本**
 
-<img src="https://cdn.nlark.com/yuque/0/2025/png/39031852/1760086668570-a3ff35ef-de7c-4f69-9674-aa3f6c2f5077.png" style="zoom:67%;" />![](https://cdn.nlark.com/yuque/0/2025/jpeg/39031852/1760086559119-f34e12f3-85af-4a64-8a9b-78e53da9eb7b.jpeg)
+![image.png](https://cdn.nlark.com/yuque/0/2025/png/39031852/1760096678032-c6c59111-c8d1-4ea2-a8cf-d3e88879547e.png?x-oss-process=image%2Fformat%2Cwebp)
 
 ---
 
@@ -198,7 +198,7 @@ python process_results.py -t 存放结果目录 -o 输出目录
 [https://github.com/yz1639/fscanOutputBeautify](https://github.com/yz1639/FscanOutputBeautify)
 
 # <font style="color:rgb(31, 35, 40);">0x06 更新记录</font>
-**2025.5.19	**
+**2025.5.19**
 
 **添加结果合并脚本（merge.py）**
 
